@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>상세 | 뉴스피드</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="btn1">
+            <a href="/new">
+                <img src="/static/images/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" class="searchbar" placeholder="Search">
+        </div>
+        <div class="btn2"><img src="/static/images/ic_info.jpg" width="22px" style="margin:9px 13px 0 0"></div>
+    </div>
+    <div class="container">
+        <div class="feed detail">
+            <div>
+                <a href="/feed/{{ article.pk }}/edit"><img src="/static/images/ic_edit.png" height="16px"></a>
+                <a href="/feed/{{ article.pk }}/remove"><img src="/static/images/ic_delete.png" height="16px"></a>
+            </div>
+            <p class="title">{{ article.title }}</p>
+            <p class="info"><strong class="name">{{ article.author }}</strong><span class="date">| {{ article.created_at }}</span></p>
+            <p class="content">
+                {{ article.text }}
+            </p>
+            <div class="accessory">
+                <img src="/static/images/ic_like.jpg" width="16px"> Like
+                <a class="comments" href="/feed/{{ article.pk }}/">
+                    <img src="/static/images/ic_comment.jpg" width="16px"> Comments
+                </a>
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <span class="help">Comments</span>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="nickname" placeholder="닉네임" /><br/>
+                <input type="password" name="password" placeholder="비밀번호" /><br/>
+                <textarea name="reply" placeholder="댓글 내용"></textarea>
+                <button type="submit">등록</button>
+            </form>
+        </div>
+
+        {% if article.comments.all %}
+        <div class="comment_list">
+            {% for comment in article.comments.all|dictsortreversed:'created_at' %}
+            <div>
+                <div class="comment">
+                    <span class="name">{{ comment.author }}</span>
+                    <p>{{ comment.text }}</p>
+                </div>
+                <div class="comment__date">
+                    {{ comment.created_at }}
+                    <a href="코멘트삭제주소"><img src="/static/images/ic_delete.png" height="16px"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+    <div class="footer">
+        <div class="tab1"><img src="/static/images/ic_feed.jpg" width="22px" style="margin-top: 15px"> </div>
+        <div class="tab2"><img src="/static/images/ic_person.jpg" width="20px" style="margin-top: 14px"></div>
+        <div class="tab3"><img src="/static/images/ic_globe.jpg" width="20px" style="margin-top: 14px"> </div>
+        <div class="tab4"><img src="/static/images/ic_etc.jpg" width="20px" style="margin-top: 14px"></div>
+    </div>
+</body>
+
+</html>
