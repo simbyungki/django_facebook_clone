@@ -92,7 +92,7 @@ def new_feed(request) :
             )
 
         print(f'새글 작성됨 : { new_article.created_at } / 제목 : { new_article.title }')
-        return redirect(f'feed/{ new_article.pk }/')
+        return redirect(f'/feed/{ new_article.pk }/')
 
     return render(request, 'new_feed.html')
 
