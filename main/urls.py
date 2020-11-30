@@ -6,7 +6,7 @@ from facebook.views import play2
 from facebook.views import profile
 from facebook.views import event
 from facebook.views import fail, help, warn
-from facebook.views import newsfeed, detail_feed, page_list, new_feed, edit_feed, remove_feed, new_page, edit_page, remove_page
+from facebook.views import newsfeed, detail_feed, page_list, new_feed, edit_feed, remove_feed, new_page, edit_page, remove_page, remove_comment
 
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('feed/<pk>/remove/', remove_feed),
     path('page/new/', new_page),
     path('page/<pk>/edit/', edit_page),
-    path('page/<pk>/remove/', remove_page)
+    path('page/<pk>/remove/', remove_page),
+    path('comment/<pk>/remove', remove_comment)
 ]

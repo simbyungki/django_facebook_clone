@@ -58,7 +58,7 @@
                 </div>
                 <div class="comment__date">
                     {{ comment.created_at }}
-                    <a href="코멘트삭제주소"><img src="/static/images/ic_delete.png" height="16px"></a>
+                    <a href="/comment/{{ comment.pk }}/remove"><img src="/static/images/ic_delete.png" height="16px"></a>
                 </div>
             </div>
             {% endfor %}

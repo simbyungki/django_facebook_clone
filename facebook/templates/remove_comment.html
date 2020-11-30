@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>댓글 삭제 | 뉴스피드</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="btn1">
+            <a href="/new">
+                <img src="/static/images/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" class="searchbar" placeholder="Search">
+        </div>
+        <div class="btn2"><img src="/static/images/ic_info.jpg" width="22px" style="margin:9px 13px 0 0"></div>
+    </div>
+    <div class="container">
+        <div class="form_box">
+            <form method="POST">
+                {% csrf_token %}
+                <h3>{{ comment.author }}님의 댓글 삭제</h3>
+                <input class="input_field" type="password" placeholder="댓글 비밀번호" name="password"><br>
+                <button class="form_button">삭제</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="tab1"><img src="/static/images/ic_feed.jpg" width="22px" style="margin-top: 15px"> </div>
+        <div class="tab2"><img src="/static/images/ic_person.jpg" width="20px" style="margin-top: 14px"></div>
+        <div class="tab3"><img src="/static/images/ic_globe.jpg" width="20px" style="margin-top: 14px"> </div>
+        <div class="tab4"><img src="/static/images/ic_etc.jpg" width="20px" style="margin-top: 14px"></div>
+    </div>
+</body>
+
+</html>

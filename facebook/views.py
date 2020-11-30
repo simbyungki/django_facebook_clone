@@ -159,3 +159,13 @@ def remove_page(request, pk) :
         return redirect('/page_list')
 
     return render(request, 'remove_page.html', {'page': page})
+
+
+def remove_comment(request, pk) :
+    comment = Comment.objects.get(pk=pk)
+    if request.method == 'POST' :
+        if request.POST.get('password') == comment.password :
+            comment.delete()
+            return redirect(f'/feed/{ article.pk }')
+
+    return render(request, 'remove_comment.html', {'comment': comment})
