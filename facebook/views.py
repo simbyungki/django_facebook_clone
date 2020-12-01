@@ -1,56 +1,11 @@
 from django.shortcuts import render, redirect
 from facebook.models import Article, Page, Comment
 
-def play(request):
-    return render(request, 'play.html')
-
-count = 0
-def play2(request):
-    age = 20
-    username = 'BK'
-    global count
-    count = count + 1
-
-    if age > 10 :
-        status = '성인'
-    else :
-        status = '청소년'
-
-    diary = ['오늘은 날씨가 맑았다. - 4월 3일', '미세머지가 너무 심하다. (4월 2일)', '비가 온다. 4월 1일에 작성']
-
-    return render(request, 'play2.html', {'username': username, 'cnt': count, 'age': status, 'diary': diary})
-
-def profile(request) :
-    return render(request, 'profile.html')
-
-def event(request):
-    age = 20
-    username = '병기'
-    global count
-    count = count + 1
-
-    if count == 7 :
-        result = '당첨'
-    else :
-        result = '꽝'
-
-    if age > 10 :
-        status = '성인'
-    else :
-        status = '청소년'
-
-
-
-    return render(request, 'event.html', {'username': username, 'cnt': count, 'age': status, 'result': result})
-
-
 def help(request):
     return render(request, 'help.html')
 
-
 def warn(request):
     return render(request, 'warn.html')
-
 
 def fail(request):
     return render(request, 'fail.html')
@@ -112,7 +67,6 @@ def edit_feed(request, pk) :
 
     return render(request, 'edit_feed.html', {'article': article})
 
-
 def remove_feed(request, pk) :
     article = Article.objects.get(pk=pk)
 
@@ -160,12 +114,11 @@ def remove_page(request, pk) :
 
     return render(request, 'remove_page.html', {'page': page})
 
-
 def remove_comment(request, pk) :
     comment = Comment.objects.get(pk=pk)
     if request.method == 'POST' :
         if request.POST.get('password') == comment.password :
             comment.delete()
-            return redirect(f'/feed/{ article.pk }')
+            return redirect(f'/')
 
     return render(request, 'remove_comment.html', {'comment': comment})
